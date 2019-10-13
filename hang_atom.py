@@ -67,19 +67,19 @@ class Verbum():
 
     def menu(self, option):
         if self.state == State.START:
-            if option == 'add a new word':
+            if option == 'add a new word' or option == 'a':
                 self.secret_word = str(input("Enter a Word: ")).lower().strip()
                 clear_output()
                 self.state = State.LOADING
                 return True
-            elif option == 'pick list':
+            elif option == 'pick list' or option == 'p':
                 if self.wordPicker(str(input(self.showCat()).lower())):
                     self.state = State.LOADING
                 else:
                     print("Wrong input.")
                     self.menu('pick list')
                 return True
-            elif option == 'change difficulty':
+            elif option == 'change difficulty' or option == 'd':
                 try:
                     self.count = int(input('''How hard do you want the game to be:
 Baby = 10
@@ -90,7 +90,7 @@ Master = 3
                 except:
                     print('Error! Try Again!')
                 return True
-            elif option == 'exit':
+            elif option == 'exit' or option == 'x':
                 clear_output()
             else:
                 print("Wrong input.")
@@ -113,7 +113,8 @@ Master = 3
                 self.showCount()
                 self.state = State.LOSTGAME
             elif ''.join(self.word) == self.secret_word:
-                print(f"{self.secret_word}\n You Won! with {self.count} guesses to spare!")
+                clear_output()
+                print(f"The word was {self.secret_word}.\nYou Won! with {self.count} guesses to spare!")
                 self.state = State.ENDGAME
             elif self.showGameMenu() == False:
                 return
@@ -125,14 +126,14 @@ Master = 3
         self.play()
 
     def showStartMenu(self):
-        message = '''Welcome to Hangman!
+        message = '''
 What would you like to do:
-Add a new word
-Pick list
-Change Difficulty
-Exit
+* Add a new word: [A]
+* Pick list: [P]
+* Change Difficulty [D]
+* Exit [X]
 '''
-        user_input = str(input(message)).lower()
+        user_input = str(input(message)).lower().strip()
         return self.menu(user_input)
 
     def loadWord(self):
@@ -270,5 +271,15 @@ Exit
             ''')
 
 hangman = Verbum('dictionary.txt')
+
+print(''' _
+| |
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __
+| '_ \\ / _` | '_ \\ / _` | '_ ` _ \\ / _` | '_ \\
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|
+                    __/ |
+                   |___/                       ''')
+
 
 hangman.play()
