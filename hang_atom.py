@@ -2,7 +2,7 @@ from IPython.display import clear_output
 from enum import Enum
 import random
 
-class State (Enum):
+class State (Enum): # This tells the program where we are in the game.
     START = 1
     LOADING = 2
     INGAME = 3
@@ -12,12 +12,8 @@ class State (Enum):
 
 class Verbum():
 
-    # Bank of Possible letters for the game
-
-
-
     def __init__(self, file_name):
-        self.refresh()
+        self.refresh() # refreshes the stats of the game back to their original state
         self.word_bank = self.createDict(file_name)
 
     def refresh(self):
@@ -52,7 +48,7 @@ class Verbum():
             categories += val + " "
         return categories
 
-    def wordPicker(self, pick):
+    def wordPicker(self, pick): #Picks a random word from the dictionary based on the category you chose.
         if pick == 'everything':
             pickedCat = random.choice(self.word_bank.keys())
             self.secret_word = random.choice(pickedCat).lower()
@@ -100,7 +96,7 @@ Master = 3
                 print("Wrong input.")
                 return True
 
-    def play(self):
+    def play(self): # The part of the program that checks where we are in the game and switches us. Looping through after every input.
         if self.state == State.START:
             if self.showStartMenu() == False:
                 return
