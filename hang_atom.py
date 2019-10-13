@@ -106,8 +106,11 @@ Master = 3
         elif self.state == State.INGAME:
 
             if self.count <= 0:
+                clear_output()
+                self.letterListShow()
                 print("You Lost!")
                 print(f'{self.secret_word} was the word')
+                self.showCount()
                 self.state = State.LOSTGAME
             elif ''.join(self.word) == self.secret_word:
                 print(f"{self.secret_word}\n You Won! with {self.count} guesses to spare!")
@@ -140,16 +143,11 @@ Exit
         clear_output()
 
         self.letterListShow()
+        self.showCount()
         self.guess(str(input()).lower().strip())
         return True
 
     def showEndMenu(self):
-        print('''Would you like to:
-Add a new word
-Pick list
-Change Difficulty
-Exit
-''')
         return True
 
     def letterListShow(self):
@@ -166,9 +164,7 @@ Exit
             self.possible_letters.remove(letter)
             self.guessed_letters.append(letter)
             if letter not in self.secret_word:
-                print("Wrong Answer!")
                 self.dropCount()
-                self.showCount()
 
             else:
 
@@ -183,7 +179,7 @@ Exit
 
     def showCount(self):  #Displays the current number of lives.
         if self.count <= 0:
-            print('''       _______
+            return print('''       _______
          |/      |
          |      (xx)
          |      \|/
@@ -193,7 +189,7 @@ Exit
         _|___
         ''')
         elif self.count == 1:
-            return print('''       _______
+             return print('''       _______
          |/      |
          |      (_)
          |      \|/
@@ -203,7 +199,7 @@ Exit
         _|___
         ''')
         elif self.count == 2:
-            print('''       _______
+            return print('''       _______
              |/      |
              |      (_)
              |      \|/
@@ -213,7 +209,7 @@ Exit
             _|___
             ''')
         elif self.count == 3:
-            print('''       _______
+            return print('''       _______
          |/      |
          |      (_)
          |      \|/
@@ -223,7 +219,7 @@ Exit
         _|___
         ''')
         elif self.count == 4:
-            print('''       _______
+            return print('''       _______
          |/      |
          |      (_)
          |      \|/
@@ -233,7 +229,7 @@ Exit
         _|___
         ''')
         elif self.count == 5:
-            print('''       _______
+            return print('''       _______
              |/      |
              |      (_)
              |       |
@@ -243,7 +239,7 @@ Exit
             _|___
             ''')
         elif self.count == 6:
-            print('''       _______
+            return print('''       _______
          |/      |
          |      (_)
          |
@@ -253,7 +249,7 @@ Exit
         _|___
         ''')
         elif self.count == 7:
-            print('''       _______
+            return print('''       _______
          |/      |
          |
          |
@@ -263,7 +259,7 @@ Exit
         _|___
         ''')
         else:
-            print('''
+            return print('''
              |/
              |
              |
