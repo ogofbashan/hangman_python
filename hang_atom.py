@@ -54,7 +54,7 @@ class Verbum():
             self.secret_word = random.choice(pickedCat).lower()
             return True
         elif pick in self.word_bank:
-            self.secret_word = random.choice(self.word_bank[pick])
+            self.secret_word = random.choice(self.word_bank[pick]).lower()
             return True
 
         else:
