@@ -92,6 +92,7 @@ Master = 3
                 return True
             elif option == 'exit' or option == 'x':
                 clear_output()
+                retrun False
             else:
                 print("Wrong input.")
                 return True
